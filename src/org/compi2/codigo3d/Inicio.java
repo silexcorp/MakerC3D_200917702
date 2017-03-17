@@ -14,6 +14,7 @@ public class Inicio extends javax.swing.JFrame {
 
     public Inicio() {
         initComponents();
+        this.jTextField_Expresion.setText("5 + a * b < a + 1 && b > 5");
     }
 
     /**
@@ -72,6 +73,7 @@ public class Inicio extends javax.swing.JFrame {
 
     private void jButton_GenerarC3DActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_GenerarC3DActionPerformed
         String texto = jTextField_Expresion.getText();
+        ControlC3D.reiniciar();
         if(texto.isEmpty()){
             System.err.println("No es posible evaluar una cadena en blanco.");
             return;

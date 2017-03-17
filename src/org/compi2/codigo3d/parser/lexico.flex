@@ -25,9 +25,13 @@ DIV             = "/"
 POT             = "^"
 PAR_IZQ         = "("
 PAR_DER         = ")"
+LLA_IZQ         = "{"
+LLA_DER         = "}"
 
+ASIG            = "="
 IGUAL           = "=="
 DIFERENTE       = "!="
+DIFERENTE2      = "<>"
 MAYOR_QUE       = ">"
 MENOR_QUE       = "<"
 MAYOR_IGUAL     = ">="
@@ -35,6 +39,10 @@ MENOR_IGUAL     = "<="
 AND             = "&&"
 OR              = "||"
 NOT             = "!"
+
+IF              = "if"
+THEN            = "then"
+ELSE            = "else"
 
 ID              = [A-Za-z][_0-9A-Za-z]*
 ENTERO          = [0-9]+
@@ -45,6 +53,9 @@ ENTER   = [\ \n]
 
 %%
 
+<YYINITIAL> {IF}            { return new Symbol(sym.IF, yyline, yycolumn, yytext()); }
+<YYINITIAL> {THEN}          { return new Symbol(sym.THEN, yyline, yycolumn, yytext()); }
+<YYINITIAL> {ELSE}          { return new Symbol(sym.ELSE, yyline, yycolumn, yytext()); }
 <YYINITIAL> {ID}            { return new Symbol(sym.ID, yyline, yycolumn, yytext()); }
 <YYINITIAL> {ENTERO}        { return new Symbol(sym.ENTERO, yyline, yycolumn, yytext()); }
 <YYINITIAL> {DECIMAL}       { return new Symbol(sym.DECIMAL, yyline, yycolumn, yytext()); }
@@ -55,7 +66,10 @@ ENTER   = [\ \n]
 <YYINITIAL> {POT}	    { return new Symbol(sym.POT, yyline, yycolumn, null); }
 <YYINITIAL> {PAR_IZQ}	    { return new Symbol(sym.PAR_IZQ, yyline, yycolumn, null); }
 <YYINITIAL> {PAR_DER}	    { return new Symbol(sym.PAR_DER, yyline, yycolumn, null); }
+<YYINITIAL> {LLA_IZQ}	    { return new Symbol(sym.LLA_IZQ, yyline, yycolumn, null); }
+<YYINITIAL> {LLA_DER}	    { return new Symbol(sym.LLA_DER, yyline, yycolumn, null); }
 
+<YYINITIAL> {ASIG}	    { return new Symbol(sym.ASIG, yyline, yycolumn, null); }
 <YYINITIAL> {IGUAL}	    { return new Symbol(sym.IGUAL, yyline, yycolumn, null); }
 <YYINITIAL> {DIFERENTE}	    { return new Symbol(sym.DIFERENTE, yyline, yycolumn, null); }
 <YYINITIAL> {MAYOR_QUE}	    { return new Symbol(sym.MAYOR_QUE, yyline, yycolumn, null); }
